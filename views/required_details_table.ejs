@@ -1,0 +1,51 @@
+<table class="table table-borderless">
+    <tr>
+        <td>
+            用户名稱:
+        </td>
+        <td><%= information.username %></td>
+    </tr>
+    <tr>
+        <td>
+            身份:
+        </td>
+        <td>
+            <select>
+                <option>自閉症患者</option>
+                <option>家長</option>
+                <option>社工</option>
+                <option>朋友</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            電郵地址:
+        </td>
+        <td>
+            <%=information.email%>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            電話號碼:
+        </td>
+        <td>
+            <div class="form-group" style="margin: 0">
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="電話號碼">
+                <small class="form-text text-muted">我們絕不以你的號碼作商業用途。</small>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            興趣:
+        </td>
+        <td>
+            <% interest_list.forEach(function(interest) {%>
+                <input type="checkbox" id="<%=interest%>" name="<%=interest%>" value="<%=interest%>">
+                <label for="<%=interest%>"> <%=interest%> </label><br>
+            <%})%>
+        </td>
+    </tr>
+</table>

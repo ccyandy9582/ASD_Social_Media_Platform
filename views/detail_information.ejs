@@ -1,0 +1,35 @@
+<%- include('header', {title:"ASD_Com", logined:false}) -%>
+<% if(detailed) { %>
+    <script>
+        window.location.replace("http://stackoverflow.com");
+    </script>
+<% } else { %>
+    <link rel="stylesheet" href="/stylesheets/details.css">
+
+    <div class="container" style="margin-top: 30px">
+        <div class="col-auto p-3 mx-auto" align="center" style="border-radius: 1rem; background-color: rgba(255,255,255,0.9)">
+                <div class="row">
+                    <div class="col-12">
+                        <p id="name" class="text-info">
+                            你好，<b><%=information.username%></b>。<br>
+                            ✨這是註冊的最後一個步驟，歡迎你加入我們！😂
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>關於: </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <form class="mx-auto">
+                            <%- include('required_details_table', {information: information, interest_list:interest_list}) -%>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+<% } %>
+<%- include('footer') -%>

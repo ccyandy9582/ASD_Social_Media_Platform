@@ -2,6 +2,14 @@
     code by Iatek LLC 2018 - CC 2.0 License - Attribution required
     code customized by Azmind.com
 */
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#007bff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#007bff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     /* Show 4th slide on md if col-md-4*/
     .carousel-inner .active.col-md-4.carousel-item + .carousel-item + .carousel-item + .carousel-item {
@@ -11,6 +19,12 @@
         z-index: -1;
         display: block;
         visibility: visible;
+    }
+    .carousel-control-prev{
+        left: -50px; !important;
+    }
+    .carousel-control-next{
+        right: -50px; !important;
     }
 }
 @media (min-width: 576px) and (max-width: 768px) {
@@ -22,6 +36,12 @@
         z-index: -1;
         display: block;
         visibility: visible;
+    }
+    .carousel-control-prev{
+        left: -50px; !important;
+    }
+    .carousel-control-next{
+        right: -50px; !important;
     }
 }
 @media (min-width: 576px) {
@@ -67,6 +87,12 @@
         display: block;
         visibility: visible;
     }
+    .carousel-control-prev{
+        left: -50px; !important;
+    }
+    .carousel-control-next{
+        right: -50px; !important;
+    }
 }
 /* MD */
 @media (min-width: 768px) {
@@ -94,6 +120,12 @@
         visibility: visible;
         display: block;
         visibility: visible;
+    }
+    .carousel-control-prev{
+        left: -70px; !important;
+    }
+    .carousel-control-next{
+        right: -70px; !important;
     }
 }
 /* LG */
@@ -127,5 +159,11 @@
         visibility: visible;
         display: block;
         visibility: visible;
+    }
+    .carousel-control-prev{
+        left: -100px; !important;
+    }
+    .carousel-control-next{
+        right: -100px; !important;
     }
 }
