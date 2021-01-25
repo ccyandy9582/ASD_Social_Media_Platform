@@ -1,3 +1,28 @@
 <%- include('header', {title:"ASD_Com", logined:false}) -%>
 
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <%for(var i=0;i<my_list.length;i++) {%>
+                <ul class="list-group shadow my-3">
+                    <li class="list-group-item">
+                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2" id="activity_title"><%=my_list[i].title%></h5>
+                                <p class="font-italic text-muted mb-0 small"><%=my_list[i].desc%></p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">
+                                        <%var link = "/activities/event/"+my_list[i].eventID%>
+                                        <a href=<%=link%> class="btn btn-primary">更多...</a>
+                                    </h6>
+                                </div>
+                            </div><img src=<%=my_list[i].url%> alt="活動圖片" width="200" class="ml-lg-5 order-1 order-lg-2">
+                        </div>
+                    </li>
+                </ul>
+            <%}%>
+        </div>
+    </div>
+</div>
+
 <%- include('footer') -%>
