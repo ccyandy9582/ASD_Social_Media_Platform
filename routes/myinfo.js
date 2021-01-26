@@ -10,8 +10,17 @@ var interest_list = ["食野","飲野","講野","唱歌"]
 
 /* GET personal information listing. */
 router.get('/', function(req, res, next) {
-    // res.render('myinfo');
-    res.send('myinfo');
+    var logined = false
+    try {
+        logined = req.cookies['login'].toString()=='true'?true:false;
+    } catch (e) {
+        console.log(e.message)
+    }
+    if (!logined) {
+        res.redirect('/login/myinfo')
+    } else {
+        res.render('myinfo',{logined: logined});
+    }
 });
 router.get('/details', function(req, res, next) {
     // res.render('myinfo');

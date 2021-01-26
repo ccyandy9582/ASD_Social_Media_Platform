@@ -6,16 +6,25 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "auth": "0.0.9",
     "balanced-match": "^1.0.0",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-mysql-session": "^2.1.5",
+    "express-rate-limit": "^5.2.3",
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
     "jsdom": "^16.4.0",
     "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
     "pm2": "^4.5.1",
     "sass": "^1.32.4"
+  },
+  "devDependencies": {
+    "express-session": "^1.17.1",
+    "helmet": "^4.4.1"
   }
 }

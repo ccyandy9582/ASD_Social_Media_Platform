@@ -20,7 +20,18 @@ let activity_set = [
 ]
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {my_list: activity_set, title:"hi"});
+  var logined = false
+  try {
+    logined = req.cookies['login'].toString()=='true'?true:false;
+  } catch (e) {
+    console.log(e.message)
+  }
+  res.render('index', {my_list: activity_set, logined: logined});
 });
+
+router.get('/signout', (req,res)=>{
+  res.clearCookie('login');
+  res.redirect('/')
+})
 
 module.exports = router;

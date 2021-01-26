@@ -1,7 +1,12 @@
 <%- include('header', {title:"ASD_Com", logined:false}) -%>
+<%var emotion = ['(|||ﾟдﾟ)', '╮(╯_╰)╭', '┐(´д`)┌', '(´-ι_-｀)', 'Σ(lliдﾟﾉ)ﾉ', '(((ﾟдﾟ)))', '(´⊙ω⊙`)', 'Σ(ﾟДﾟ；≡；ﾟдﾟ)']%>
+<%var number = Math.floor(Math.random()*Math.floor(emotion.length))%>
+<%console.log(number)%>
+<div class="w-100" align="center">
+    <p class="display-1"><%=emotion[number]%></p>
+    <h1><%=error.statusCode%> <%= message %></h1>
+</div>
 
-<h1><%= error.status %> <%=error.statusCode%></h1>
-<%= message %>
 
 
 <%- include('footer') -%>

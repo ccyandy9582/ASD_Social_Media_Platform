@@ -24,13 +24,19 @@ let activity_set = [
 
 /* GET activities listing. */
 router.get('/', function(req, res, next) {
-    // res.render('activities');
-    res.render('activities', {my_list:activity_set});
+    var logined = false
+    try {
+        logined = req.cookies['login'].toString()=='true'?true:false;
+    } catch (e) {
+        console.log(e.message)
+    }
+    res.render('activities', {my_list:activity_set, logined:logined});
 });
 
 router.get('/event/:eventID', function (req, res, next) {
     var eventID = req.params.eventID;
 
+    res.render('detailed_activity', {activity:activity_set[0]})
 })
 
 module.exports = router;
