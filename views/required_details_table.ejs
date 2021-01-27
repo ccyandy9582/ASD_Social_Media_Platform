@@ -7,14 +7,16 @@
     </tr>
     <tr>
         <td>
-            身份:
+            你是誰?
         </td>
         <td>
-            <select>
-                <option>自閉症患者</option>
-                <option>家長</option>
-                <option>社工</option>
-                <option>朋友</option>
+            <select id="identify" name="identify">
+                <option value="lvl_1_asd">級別一的自閉症患者</option>
+                <option value="lvl_2_asd">級別二的自閉症患者</option>
+                <option value="lvl_3_asd">級別三的自閉症患者</option>
+                <option value="parent">家長</option>
+                <option value="social_worker">社工</option>
+                <option value="friend">朋友</option>
             </select>
         </td>
     </tr>
@@ -32,7 +34,7 @@
         </td>
         <td>
             <div class="form-group" style="margin: 0">
-                <input type="tel" class="form-control" id="phoneNumber" placeholder="電話號碼">
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="電話號碼" name="phoneNumber">
                 <small class="form-text text-muted">我們絕不以你的號碼作商業用途。</small>
             </div>
         </td>

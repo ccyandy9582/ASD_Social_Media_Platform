@@ -23,7 +23,6 @@ router.get('/', function(req, res, next) {
     }
 });
 router.get('/details', function(req, res, next) {
-    // res.render('myinfo');
     res.render('detail_information', {information: info1, detailed: false, interest_list:interest_list});
 });
 
