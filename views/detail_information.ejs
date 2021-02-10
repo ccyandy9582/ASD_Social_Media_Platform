@@ -1,9 +1,4 @@
 <%- include('header', {title:"ASD_Com", logined:logined}) -%>
-<% if(detailed) { %>
-    <script>
-        window.location.replace("http://stackoverflow.com");
-    </script>
-<% } else { %>
     <link rel="stylesheet" href="/stylesheets/details.css">
 
     <div class="container" style="margin-top: 30px">
@@ -31,5 +26,4 @@
                 </div>
         </div>
     </div>
-<% } %>
 <%- include('footer') -%>

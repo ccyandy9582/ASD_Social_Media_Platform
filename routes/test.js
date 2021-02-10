@@ -1,23 +1,38 @@
-var express = require('express');
-var router = express.Router();
-const db = require('../database');
+var express = require('express')
+var router = express.Router()
+const sender = require('../email/js/send_content')
+const parms = require('../parms')
+
+var temp = [
+    {
+        'title': 'title_1',
+        'name': 'name_1',
+        'pw': 'pw_1',
+        'email': 'ccyandy9582@gmail.com'
+    }
+]
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
-    db.connect( (err) => {
-        if (err) throw err;
-        console.log('connected')
+    // db.connect( (err) => {
+    //     if (err) throw err;
+    //     console.log('connected')
 
-        var name = "andy";
-        console.log(typeof name)
-        var result = db.query(`select * from users where name = "${name}"`, (err, result)=>{
-            if (err) throw err;
-            console.log(result[0].name);
-            res.cookie('test', true)
-            console.log(req.cookies['test'] == "true")
-            res.render('test', {results:result})
-        })
-    }).close();
-});
+    //     var name = "andy";
+    //     console.log(typeof name)
+    //     var result = db.query(`select * from users where name = "${name}"`, (err, result)=>{
+    //         if (err) throw err;
+    //         console.log(result[0].name);
+    //         res.cookie('test', true)
+    //         console.log(req.cookies['test'] == "true")
+    //         res.render('test', {results:result})
+    //     })
+    // }).close();
+    res.render('test', { results: temp })
+})
+    .post('/', (res, req) => {
+        sender(parms.mail.auth.mail_type, "asjdhjkashdkhkasdhk")
+        req.redirect('/test')
+    })
 
-module.exports = router;
+module.exports = router

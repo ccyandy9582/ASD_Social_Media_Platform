@@ -1,52 +1,66 @@
 <%- include('header', {title:"ASD_Com", logined:false}) -%>
-<link rel="stylesheet" href="/stylesheets/signup.css">
+    <link rel="stylesheet" href="/stylesheets/signup.css">
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card card-signin flex-row my-5">
-                <div class="card-img-left d-none d-md-flex" id="signup_image">
-                    <!-- Background image for card set in CSS! -->
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        註冊
-                        <div class="font-weight-light text-primary" align="right" style="font-size: small">步驟 1/2</div>
-                    </h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex" id="signup_image">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            註冊
+                            <div class="font-weight-light text-primary" align="right" style="font-size: small">步驟 1/2
+                            </div>
+                        </h5>
 
-                    <form class="form-signin" method="post" action="/signup">
-                        <div class="form-label-group">
-                            <input type="text" id="inputUserame" class="form-control" placeholder="用戶名稱" required autofocus>
-                            <label for="inputUserame">用戶名稱</label>
-                        </div>
+                        <form class="form-signin" method="post">
+                            <div class="form-label-group">
+                                <input type="text" id="inputUserame" name="username" class="form-control"
+                                    placeholder="用戶名稱" required autofocus>
+                                <label for="inputUserame">用戶名稱</label>
+                            </div>
 
-                        <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="電郵地址" required>
-                            <label for="inputEmail">電郵地址</label>
-                        </div>
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="電郵地址"
+                                    required>
+                                <label for="inputEmail">電郵地址</label>
+                            </div>
 
-                        <hr>
+                            <hr>
 
-                        <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required>
-                            <label for="inputPassword">密碼</label>
-                        </div>
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" name="pw" class="form-control"
+                                    placeholder="密碼" required>
+                                <label for="inputPassword">密碼</label>
+                            </div>
 
-                        <div class="form-label-group">
-                            <input type="password" id="inputConfirmPassword" class="form-control" placeholder="確認密碼" required>
-                            <label for="inputConfirmPassword">確認密碼</label>
-                        </div>
+                            <div class="form-label-group">
+                                <input type="password" id="inputConfirmPassword" name="firmPW" class="form-control"
+                                    placeholder="確認密碼" required>
+                                <label for="inputConfirmPassword">確認密碼</label>
+                            </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">註冊</button>
-                        <a class="d-block text-center mt-2 small" href="/login">登入</a>
-                        <hr class="my-4">
-                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> 透過 GOOGLE 註冊</button>
-                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> 透過 FACEBOOK 註冊</button>
-                    </form>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">註冊</button>
+                            <a class="d-block text-center mt-2 small" href="/login">登入</a>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                                    class="fab fa-google mr-2"></i> 透過 GOOGLE 註冊</button>
+                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                                    class="fab fa-facebook-f mr-2"></i> 透過 FACEBOOK 註冊</button>
+                        </form>
+                        <% if (message) { %>
+                            <% message.forEach((str)=>{ %>
+                                <p class="text-danger">
+                                    <%= str %>
+                                </p>
+                            <% }) %>
+                        <% } %>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<%- include('footer') -%>
+    <%- include('footer') -%>

@@ -1,0 +1,40 @@
+<%- include('header', {title:"ASD_Com", logined:logined}) -%>
+    <link rel="stylesheet" href="/stylesheets/form.css">
+    <!-- TODO: change body color -->
+
+    <div class="container padding-bottom-3x mb-2 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card-body">
+                    <h4 class="card-title text-center">重設密碼</h4>
+                    <form class="form-signin" method="post">
+                        <% if (wrong_mail) { %>
+                            <span class="text-danger">你所輸入的電郵地址與申請重設密碼的電郵地址並不相同，請重新輸入</span>
+                        <% } %>
+                        <div class="form-label-group">
+                            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="電郵地址"
+                                required>
+                            <label for="inputEmail">電郵地址</label>
+                        </div>
+                        <hr>
+                        <% if (pass_same) { %>
+                            <span class="text-danger">請確認兩個密碼相同</span>
+                        <% } %>
+                        <div class="form-label-group">
+                            <input type="password" name="pw" class="form-control" placeholder="密碼"
+                                required>
+                            <label for="inputPassword">密碼</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="password" name="re_pw" class="form-control" placeholder="重覆密碼"
+                                required>
+                            <label for="inputPassword">重覆密碼</label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">重置密碼</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') -%>

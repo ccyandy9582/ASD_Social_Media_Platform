@@ -9,4 +9,3 @@ module.exports = mysql.createConnection({
     acquireTimeout: 10000
 })
 
-

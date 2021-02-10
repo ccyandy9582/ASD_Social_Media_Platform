@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var parms = require('../parms')
 
 var info1 = {
     "username": "test_001",
@@ -10,20 +11,25 @@ var interest_list = ["食野","飲野","講野","唱歌"]
 
 /* GET personal information listing. */
 router.get('/', function(req, res, next) {
-    var logined = false
-    try {
-        logined = req.cookies['login'].toString()=='true'?true:false;
-    } catch (e) {
-        console.log(e.message)
-    }
-    if (!logined) {
-        res.redirect('/login/myinfo')
+    // var logined = false
+    // try {
+    //     logined = req.cookies['login'].toString()=='true'?true:false;
+    // } catch (e) {
+    //     console.log(e.message)
+    // }
+    if (!parms.env.logined) {
+        res.redirect('/login', {logined: false})
     } else {
-        res.render('myinfo',{logined: logined});
+        res.render('myinfo', {logined: parms.env.logined});
     }
 });
 router.get('/details', function(req, res, next) {
-    res.render('detail_information', {information: info1, detailed: false, interest_list:interest_list});
+    if (!parms.env.logined) {
+        res.redirect('/');
+    } else {
+        res.render('detail_information', {information: parms.user, interest_list:parms.hobbies});
+    }
+    
 });
 
 module.exports = router;
