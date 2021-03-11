@@ -36,11 +36,19 @@ router.get('/', function(req, res, next) {
     }
     
     if (message.length == 0) {
+        message = []
         parms.user.username = username
         parms.user.email = userMail
         parms.user.details = false
+        await db.connect((err)=>{
+            if (err) throw err
+            db.query(`INSERT INTO users(username, pw, email, details) VALUES("${parms.user.username}", "${password}", "${parms.user.email}", "${parms.user.details}")`)
+        })
         res.render('/myinfo/details')
-    } 
+    } else {
+        res.render('signup', {message: this.message});
+        message = []
+    }
 });
 
 module.exports = router;

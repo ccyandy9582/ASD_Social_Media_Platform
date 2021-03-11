@@ -28,7 +28,13 @@ router.get('/', async (req, res, next) => {
     //         res.render('test', {results:result})
     //     })
     // }).close();
-    res.render('test', { results: temp })
+    res.render('test', { results: temp, interest_list: parms.hobbies})
+    // var logined = false
+    // try {
+    //     logined = req.cookies['login'].toString()=='true'?true:false;
+    // } catch (e) {
+    //     console.log(e.message)
+    // }
 })
     .post('/', (res, req) => {
         sender(parms.mail.auth.mail_type, "asjdhjkashdkhkasdhk")

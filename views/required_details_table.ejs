@@ -3,7 +3,9 @@
         <td>
             用户名稱:
         </td>
-        <td><%= information.username %></td>
+        <td>
+            <%= information.username %>
+        </td>
     </tr>
     <tr>
         <td>
@@ -12,8 +14,12 @@
     </tr>
     <tr>
         <td>
-            <input type="checkbox" name="Male" id="Male" value="M">男性
-            <input type="checkbox" name="Female" id="Female" value="F">女性
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">男性</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">女性</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">其他</label>
         </td>
     </tr>
     <tr>
@@ -52,18 +58,67 @@
     </tr>
     <tr>
         <td>
+            居住地區:
+        </td>
+        <td>
+            <fieldset>
+                <legend>港島</legend>
+                <input type="radio" name="living_area" id="CW" value="CW">
+                <label for="CW">中西區</label>
+                <input type="radio" name="living_area" id="E" value="E">
+                <label for="E">東區</label>
+                <input type="radio" name="living_area" id="S" value="S">
+                <label for="S">南區</label>
+                <input type="radio" name="living_area" id="WC" value="WC">
+                <label for="WC">灣仔區</label>
+            </fieldset>
+            <fieldset>
+                <legend>九龍</legend>
+                <input type="radio" name="living_area" id="KC" value="KC">
+                <label for="KC">九龍城區</label>
+                <input type="radio" name="living_area" id="KT" value="KT">
+                <label for="KT">觀塘區</label>
+                <input type="radio" name="living_area" id="SSP" value="SSP">
+                <label for="SSP">深水埗區</label>
+                <input type="radio" name="living_area" id="WTS" value="WTS">
+                <label for="WTS">黃大仙區</label>
+                <input type="radio" name="living_area" id="YTM" value="YTM">
+                <label for="YTM">油尖旺區</label>
+            </fieldset>
+            <fieldset>
+                <legend>新界</legend>
+                <input type="radio" name="living_area" id="ID" value="ID">
+                <label for="ID">離島區</label>
+                <input type="radio" name="living_area" id="KTD" value="KTD">
+                <label for="KTD">葵青區</label>
+                <input type="radio" name="living_area" id="ND" value="ND">
+                <label for="ND">北區</label>
+                <input type="radio" name="living_area" id="SKD" value="SKD">
+                <label for="SKD">西貢區</label>
+                <input type="radio" name="living_area" id="STD" value="STD">
+                <label for="STD">沙田區</label>
+                <input type="radio" name="living_area" id="TPD" value="TPD">
+                <label for="TPD">大埔區</label>
+                <input type="radio" name="living_area" id="TWD" value="TWD">
+                <label for="TWD">荃灣區</label>
+                <input type="radio" name="living_area" id="TMD" value="TMD">
+                <label for="TMD">屯門區</label>
+                <input type="radio" name="living_area" id="YLD" value="YLD">
+                <label for="YLD">元朗區</label>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td>
             興趣:
         </td>
         <td>
             <% interest_list.forEach(function(interest) {%>
                 <input type="checkbox" id="<%=interest%>" name="<%=interest%>" value="<%=interest%>">
-                <label for="<%=interest%>"> <%=interest%> </label><br>
-            <%})%>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            
+                <label for="<%=interest%>">
+                    <%=interest%>
+                </label><br>
+                <%})%>
         </td>
     </tr>
 </table>

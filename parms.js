@@ -13,8 +13,9 @@ module.exports = {
         "img": null,
         "email": null,
         "details": null,
+        "hobbies": [],
+        "activities": []
     },
-    "hobbies": ["食野", "飲野", "講野", "唱歌"],
     "activities": [
         {
             "title": "會濟報好大必者政下二",
@@ -31,6 +32,24 @@ module.exports = {
             "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
             "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽"
         }
+    ],
+    "hobbies": [
+        {
+            "hobby": "食野",
+            "img": "#"
+        },
+        {
+            "hobby": "飲野",
+            "img": "#"
+        },
+        {
+            "hobby": "講野",
+            "img": "#"
+        },
+        {
+            "hobby": "唱歌",
+            "img": "#"
+        },
     ],
     "mail": {
         "auth": {
