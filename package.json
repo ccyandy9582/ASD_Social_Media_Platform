@@ -22,7 +22,8 @@
     "mysql": "^2.18.1",
     "nodemailer": "^6.4.17",
     "pm2": "^4.5.1",
-    "sass": "^1.32.4"
+    "sass": "^1.32.4",
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "express-session": "^1.17.1",

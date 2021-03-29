@@ -1,3 +1,69 @@
 <%- include('header', {title:"ASD_Com", logined: logined}) -%>
-<%- include('scrollable_carousel', {my_list: my_list}) -%>
+<%- include('scrollable_carousel', {my_list: activities}) -%>
+<% if (logined) { %>
+    <% friends.forEach(friend => { %>
+        <div class="card" style="width: 12rem;">
+            <img class="card-img-top pd-1"
+                src="<%= friend.img %> "
+                style="padding: 10px;">
+            <div class="card-body" align="center">
+                <p class="card-text"><%= friend.name %> </p>
+            </div>
+        </div>
+    <% }); %>
+<% } %>
+<div class="container py-3" align="center">
+    <div class="row">
+        <% for( let index = 0; index < friends.length; index++ ) { %>
+            <div class="col py-1">
+                <div class="card" style="width: 12rem;">
+                    <img class="card-img-top pd-1"
+                        src="<%= friends[index].img %> "
+                        style="padding: 10px;">
+                    <div class="card-body" align="center">
+                        <p class="card-text"><%= friends[index].name %> </p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <div class="row">
+        <div class="col mx-auto">
+            <ul class="list-group shadow my-3">
+                <li class="list-group-item">
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <h5 class="mt-0 font-weight-bold mb-2" id="activity_title">認識自閉症</h5>
+                            <p class="font-italic text-muted mb-0">
+                                有追看《雖然是精神病但沒關係》的你們都知道，劇中鋼太的哥哥尚泰是一名自閉症人士，生活需要鋼太的照顧。你或者會問：自閉症不就只是自我封閉，不能與人溝通嗎？劇中尚泰的行為是否只是戲劇效果？在現實中，自閉症人士有什麼特徵？面對他們時，可以如何與他們相處或溝通？為此，小編特意請教了學生事務處殘疾學生支援服務 的同事，希望能解答到大家心中可能會有的疑問。
+                            </p>
+                            <div class="my-1" align="center">
+                                <h6 class="font-weight-bold my-2">
+                                    <a href="https://www.sunshine.cuhk.edu.hk/tc/what-is-autism-tc/" class="btn btn-primary">了解更多...</a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <h5 class="mt-0 font-weight-bold mb-2" id="activity_title">如何與自閉症患者相處？</h5>
+                            <p class="font-italic text-muted mb-0">
+                                自閉症類群障礙(包含亞斯柏格症、高功能自閉症等)傾向的孩子，往往讓師長一個頭兩個大，他們的特質是堅持己、較自我中心、較難以理解約定俗成的社會互動、較不擅長掌握抽象情緒，因此他們與學校同儕互動容易情緒失控。<br>
+                                面對此類的孩子，我們需要瞭解他們的特性，才不至於因為誤會而讓孩子的情緒過度反應，使小事變得更加複雜，惡化孩子們的人際經驗，他們往往有以下特性：
+                            </p>
+                            <div class="my-1" align="center">
+                                <h6 class="font-weight-bold my-2">
+                                    <a href="https://www.commonhealth.com.tw/blog/942" class="btn btn-primary">了解更多...</a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <%- include('footer') -%>

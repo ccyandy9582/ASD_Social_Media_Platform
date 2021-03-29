@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 const sender = require('../email/js/send_content')
 const parms = require('../parms')
+const db = require('../database')
 
 var temp = [
     {
@@ -14,21 +15,21 @@ var temp = [
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
-    // db.connect( (err) => {
-    //     if (err) throw err;
-    //     console.log('connected')
+    db.connect( (err) => {
+        if (err) throw err;
+        console.log('connected')
 
-    //     var name = "andy";
-    //     console.log(typeof name)
-    //     var result = db.query(`select * from users where name = "${name}"`, (err, result)=>{
-    //         if (err) throw err;
-    //         console.log(result[0].name);
-    //         res.cookie('test', true)
-    //         console.log(req.cookies['test'] == "true")
-    //         res.render('test', {results:result})
-    //     })
-    // }).close();
-    res.render('test', { results: temp, interest_list: parms.hobbies})
+        var name = "test_001";
+        var result = db.query(`select * from users where user_name = "${name}"`, (err, result)=>{
+            if (err) throw err;
+            
+            console.log(result[0].user_name)
+            res.render('test', {results:result, interest_list: parms.hobbies})
+        })
+    }).close();
+
+    console.log(sorting_helper('WTS'))
+    // res.render('test', { results: temp, interest_list: parms.hobbies})
     // var logined = false
     // try {
     //     logined = req.cookies['login'].toString()=='true'?true:false;

@@ -29,30 +29,30 @@ router.get('/', (req, res) => {
                         parms.env.login_fail = false
                         parms.env.logined = true
                         failed_count = 0
-                        parms.user.username = result[0].username
-                        parms.user.living_area = result[0].living_area
+                        parms.user.username = result[0].user_name
+                        parms.user.living_area = result[0].living_distict
                         parms.user.age = result[0].age
-                        parms.user.ASD_lvl = result[0].ASD_lvl
+                        parms.user.ASD_lvl = result[0].identify
                         parms.user.gender = result[0].gender
-                        parms.user.img = result[0].img
+                        parms.user.img = result[0].img_url
                         parms.user.email = result[0].email
                         parms.user.details = result[0].details
                         
-                        db.query(`select hobby from hobbies where userid = "${result[0].user_id}"`,(error, hobbies)=>{
+                        db.query(`select hobby from hobbies where userid = ${result[0].user_id}`,(error, hobbies)=>{
                             if(error) throw error
                             hobbies.forEach(hobby => {
                                 parms.user.hobbies.push(hobby)
                             });
                         })
 
-                        db.query(`select activity from activities, user_activities where userid = "${result[0].user_id}"`,(error, activities)=>{
+                        db.query(`select * from activities, user_activities where user_activities.user_id = "${result[0].user_id}" order by organise_date DESC`,(error, activities)=>{
                             if(error) throw error
                             activities.forEach(activity => {
                                 parms.user.activities.push(
                                     {
                                         "title": activity.title,
                                         "eventID": activity.eventID,
-                                        "desc": activity.desc
+                                        "desc": activity.desc,
                                     }
                                 )
                             });

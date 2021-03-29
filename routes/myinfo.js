@@ -4,11 +4,12 @@ var parms = require('../parms')
 
 /* GET personal information listing. */
 router.get('/', function (req, res, next) {
-    if (!parms.env.logined) {
-        res.redirect('/login', { logined: false })
-    } else {
-        res.render('myinfo', { logined: parms.env.logined })
-    }
+    // if (!parms.env.logined) {
+    //     res.redirect('/login', { logined: false })
+    // } else {
+    //     res.render('myinfo', { logined: parms.env.logined })
+    // }
+    res.render('myinfo', { logined: parms.env.logined })
 })
 router.get('/details', function (req, res, next) {
     if (!parms.env.logined) {
