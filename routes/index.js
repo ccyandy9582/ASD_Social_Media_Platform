@@ -4,28 +4,38 @@ var parms = require('../parms')
 const db = require('../database')
 const distinct_bfs = require('../helper/distinct')
 
-/* GET home page. */
+
+/* GET home page. And initial the parms.js */
 router.get('/', function (req, res, next) {
-    let friends = []
-    // if not logined
-    if (!parms.env.logined) {
-        var temp = db.query(`select * from activities order by organise_date desc`, (err, result) => {
-            if (err) throw err;
-            result.forEach(activity => {
-                parms.activities.push({ "title": activity.activity_name, "desc": activity.description, "guest": activity.guest, "max_guest": activity.max_guest, "place": activity.place, "organise": activity.organise, "start_time": activity.start_time, "end_time": activity.end_time })
+    // To get the hobbies list
+    db.query(`select * from hobbies`, (err, result) => {
+        if (err) throw err
+        result.forEach(hobby => {
+            parms.hobbies.push({
+                "title": hobby.hobby,
+                "img": hobby.img
             })
         })
-    } else {
-        distinct_bfs(parms.user.living_area).forEach(conjoint => {
-            var temp = db.query(`select * from activities where place_distinct = "${conjoint}" and organise_date >= ${new Date()}`, (err, result) => {
-                if (err) throw err
-                parms.activities.push({ "title": result.activity_name, "desc": result.description, "guest": result.guest, "max_guest": result.max_guest, "place": result.place, "organise": result.organise, "start_time": result.start_time, "end_time": result.end_time })
-            })
-            // select the most common-hobbies users
+    })
+    // To get the activities list, it will be sorted by distance if the user logined
+    db.query(`select * from activities order by organise_date desc`, (err, result) => {
+        if (err) throw err;
+        parms.activities = []
+        result.forEach(activity => {
+            parms.activities.push({ "activity_id": activity.activity_id,"title": activity.activity_name, "desc": activity.description, "guest": activity.guest, "max_guest": activity.max_guest, "place": activity.place, "organise": activity.organise, "start_time": activity.start_time, "end_time": activity.end_time, "place_distinct":activity.place_distinct, "img":activity.img })
+        })
+    })
+    if (parms.env.logined) {
+        parms.activities = sorting(parms.activities, distinct_bfs(parms.user.living_area))
+        // To get the recommended friend list that according to the mutual hobbies
+        var friend_list = []
+        db.query(`select * from users, hobbies where hobbies.user_id = users.user_id`, (err, result) => {
+            if (err) throw err
+            result.forEach
         })
     }
-    friends.push({"img": "http://www.newdesignfile.com/postpic/2009/03/person-icon_88181.png", "name": "test_002"}, {"img": "http://www.newdesignfile.com/postpic/2009/03/person-icon_88181.png", "name": "test_003"})
-    res.render('index', { activities: parms.activities, logined: parms.env.logined, friends:friends })
+    console.log(parms.activities);
+    res.render('index', { activities: parms.activities, logined: parms.env.logined, friends: friend_list, articles: parms.articles })
 })
 
 router.get('/signout', (req, res) => {
@@ -42,5 +52,19 @@ router.get('/signout', (req, res) => {
     parms.user.hobbies = []
     res.redirect('/')
 })
+
+function sorting(list, order) {
+    let sorted = []
+    order.forEach(ele => {
+        console.log('a');
+        list.forEach(item => {
+            console.log(item.place_distinct == ele && !sorted.includes(item));
+            if (item.place_distinct == ele && !sorted.includes(item)) {
+                sorted.push(item)
+            }
+        })
+    });
+    return sorted
+}
 
 module.exports = router

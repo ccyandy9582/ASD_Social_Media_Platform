@@ -14,84 +14,10 @@ module.exports = {
         "email": null,
         "details": null,
         "hobbies": [],
-        "activities": []
+        "activities": [],
     },
-    "activities": [
-        {
-            "title": "會濟報好大必者政下二",
-            "eventID": "fdb61c16-4bba-11e4-9e35-164230d1df67",
-            "desc": "容有那一氣持地來於結主了友如頭......院還地入。出乎機富事的著度同禮、時在科種力事再數總源式孩？",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1"
-        },
-        {
-            "title": "主覺問我的食什期和",
-            "eventID": "0bc365ac-4bbb-11e4-9e35-164230d1df67",
-            "desc": "生老了險實去供考權是車子氣長不別相且員高麼也工家看",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1"
-        },
-        {
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },
-        {
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },
-        {
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },
-        {
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },{
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },{
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },{
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },{
-            "title": "是實裡在園時傳",
-            "eventID": "0ff44786-4bbb-11e4-9e35-164230d1df67",
-            "desc": "不半過何：為濟是在制們。裡得一方出，處師取是你賣而陽",
-            "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.niddk.nih.gov%2F-%2Fmedia%2FImages%2FHealth-Information%2FWeight-Management%2FTips-for-Starting-Physical-Activity_TW_1200x630.jpg&f=1&nofb=1",
-        },
-    ],
-    "hobbies": [
-        {
-            "hobby": "食野",
-            "img": "#"
-        },
-        {
-            "hobby": "飲野",
-            "img": "#"
-        },
-        {
-            "hobby": "講野",
-            "img": "#"
-        },
-        {
-            "hobby": "唱歌",
-            "img": "#"
-        },
-    ],
+    "activities": [],
+    "hobbies": [],
     "mail": {
         "auth": {
             "mail_type": "auth",
@@ -102,4 +28,24 @@ module.exports = {
             "mail_title": "重設你在ASD Communication的帳號密碼",
         },
     },
+    "api_key": {
+        'google': 'AIzaSyAXzrJff5-GevtMF0ceTDszqsD6xm5swO0',
+    },
+    "articles": [
+        {
+            "title": "認識自閉症",
+            "desc": "有追看《雖然是精神病但沒關係》的你們都知道，劇中鋼太的哥哥尚泰是一名自閉症人士，生活需要鋼太的照顧。你或者會問：自閉症不就只是自我封閉，不能與人溝通嗎？劇中尚泰的行為是否只是戲劇效果？在現實中，自閉症人士有什麼特徵？面對他們時，可以如何與他們相處或溝通？為此，小編特意請教了學生事務處殘疾學生支援服務 的同事，希望能解答到大家心中可能會有的疑問。",
+            "link": "https://www.sunshine.cuhk.edu.hk/tc/what-is-autism-tc/"
+        },
+        {
+            "title": "如何與自閉症患者相處？",
+            "desc": "自閉症類群障礙(包含亞斯柏格症、高功能自閉症等)傾向的孩子，往往讓師長一個頭兩個大，他們的特質是堅持己、較自我中心、較難以理解約定俗成的社會互動、較不擅長掌握抽象情緒，因此他們與學校同儕互動容易情緒失控。<br>面對此類的孩子，我們需要瞭解他們的特性，才不至於因為誤會而讓孩子的情緒過度反應，使小事變得更加複雜，惡化孩子們的人際經驗，他們往往有以下特性：",
+            "link": "https://www.commonhealth.com.tw/blog/942"
+        },
+        {
+            "title": "泛自閉症人士的愛，更值得我們學習",
+            "desc": "《光譜上發現愛》(LOVE ON THE SPECTRUM)是NETFLIX一套戀愛真人秀，以泛自閉症的人士為主角，探討他們生活中的約會、追求過程及對愛情的看法。起初只是抱著好奇的心，想了解泛自閉症的人如何談戀愛和會遇上甚麼困難。但當我看完頭兩集後，我「悔改」了。其實我們要在愛情上向他們學習，遇上愛情困難的，更多是我們這些「平常人」。而且不在乎他人看法的他們，比我們更能看到世上的真善美。",
+            "link": "https://pm-news.hk/2020/09/11/love-on-the-spectrum/"
+        },
+    ],
 }

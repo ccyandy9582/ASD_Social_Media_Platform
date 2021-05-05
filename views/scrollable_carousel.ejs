@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="stylesheets/carousel.css">
 <script src="javascripts/carousel-remote.js"></script>
 
-<div class="container text-center">
+<div class="container text-center" style="margin-top: 50px;">
     <div class="container-fluid my-3" align="center">
         <div id="carousel-example" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner row w-100" role="listbox" style="padding: 0">
@@ -27,7 +27,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title"><%=my_list[i].title%></h4>
                                     <p class="card-text"><%=my_list[i].desc%></p>
-                                    <%var link = "/activities/event/"+my_list[i].eventID%>
+                                    <%var link = "/activities/event/"+my_list[i].activity_id%>
                                 </div>
                                 <div class="card-footer bg-white">
                                     <a href=<%=link%> class="btn btn-primary">更多...</a>

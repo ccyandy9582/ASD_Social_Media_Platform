@@ -1,20 +1,20 @@
-<%- include('header', {title:"ASD_Com", logined:true}) -%>
+<%- include('header', {title:"ASD_Com", logined:logined}) -%>
 
     <div class="container">
-        <div class="row" style="text-align: center;">
+        <div class="row" style="text-align: center; margin-top: 20%;">
             <div class="col">
                 <h1><%= activity.title %></h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-8">
                 <table style="font-size: 2vh;">
                     <tr>
                         <td>
                             活動簡介：
                         </td>
                         <td>
-                            <%= activity.desc %> 
+                            <%= activity.desc %>
                         </td>
                     </tr>
                     <tr>
@@ -51,21 +51,26 @@
                     </tr>
                 </table>
             </div>
-            <div class="col">
+            <div class="col-sm-4">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.0976471446666!2d114.18238931196703!3d22.345489767438885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34040724181ec441%3A0xc68bcf8736b10d00!2z542F5a2Q5bGx5YWs5ZyS54eS54Ok5aC0!5e0!3m2!1szh-TW!2shk!4v1616059358295!5m2!1szh-TW!2shk"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    width="500px"
+                    height="450px"
+                    frameborder="0" style="border:0"
+                    src="<%= src %>" allowfullscreen>
+                </iframe> 
             </div>
         </div>
         <div class="row" align="center">
             <div class="col py-3">
-                <% if (new Date()- organise_date> 0) { %>
-                    <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已過期</button>
-                <% } else if (max_guest-guest<=0) { %>
-                    <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已滿人</button>
-                <% } else { %>
-                    <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit">報名參加</button>
-                <% } %>
+                <form method="post">
+                    <% if (new Date() >= activity.organise_date) { %>
+                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已過期</button>
+                    <% } else if (activity.max_guest - activity.guest<=0) { %>
+                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已滿人</button>
+                    <% } else { %>
+                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit">報名參加</button>
+                    <% } %>
+                </form>
             </div>
         </div>
 
@@ -89,6 +94,12 @@
                             </div>
                         <% }); %>
                     </div>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col" align="center" style="font-size: 2rem; background-color: aliceblue; padding: 10px;">
+                    成為你朋友中第一個參加此活動的人
                 </div>
             </div>
         <% } %>
