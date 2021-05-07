@@ -4,6 +4,9 @@ const sender = require('../email/js/send_content')
 const parms = require('../parms')
 const db = require('../database')
 const https = require('https')
+// const recommender = require('../helper/friend_recommender')
+
+// console.log(recommender(10001));
 
 var temp = [
     {
@@ -35,7 +38,10 @@ router.get('/', async (req, res, next) => {
     console.log(src);
     // console.log(sorting_helper('WTS'))
 
-    res.render('test', {src: src})
+    var test = {b: "b"}
+    test.a = "a"
+
+    res.render('test', {src: src, test: test})
     // res.render('test', { results: temp, interest_list: parms.hobbies})
     // var logined = false
     // try {
@@ -44,9 +50,9 @@ router.get('/', async (req, res, next) => {
     //     console.log(e.message)
     // }
 
-    document.querySelector('#btnEd').addEventListener('click', () => {
-        alertHI()
-    })
+    // document.querySelector('#btnEd').addEventListener('click', () => {
+    //     alertHI()
+    // })
 })
     .post('/', (res, req) => {
         sender(parms.mail.auth.mail_type, "asjdhjkashdkhkasdhk")

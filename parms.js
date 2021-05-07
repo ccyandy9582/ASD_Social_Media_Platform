@@ -2,6 +2,7 @@ module.exports = {
     "env": {
         "logined": false,
         "login_fail": false,
+        "failed_count": 0,
     },
     "user": {
         "user_id": null,
@@ -15,6 +16,8 @@ module.exports = {
         "details": null,
         "hobbies": [],
         "activities": [],
+        "friends": [],
+        "recommendedList": [],
     },
     "activities": [],
     "hobbies": [],

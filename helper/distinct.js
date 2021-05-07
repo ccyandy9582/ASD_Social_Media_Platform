@@ -7,7 +7,6 @@
  * ID: islands, KTD: kwai Tsing, ND: north,
  * SKD: sai kung, STD: sha tin, TPD: tai po,
  * TWD: tsuen wan, TMD: tuen mun, YLD: yuen long
-
  */
 const distincts = "CW E S WC KC KT SSP WTS YTM ID KTD ND SKD STD TPD TWD TMD YLD".split(' ')
 const routes = [

@@ -19,16 +19,25 @@ var myinfoRouter = require('./routes/myinfo');
 var testRouter = require('./routes/test')
 
 var app = express();
+// let session become global
+var appendLocalsToUseInViews = function(req, res, next)
+{            
+    //append request and session to use directly in views and avoid passing around needless stuff
+    res.locals.session = req.session;
+    next(null, req, res);
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(appendLocalsToUseInViews)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: "84JFAdame8A5mS", resave: true, saveUninitialized: true,}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -53,7 +62,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 module.exports = app;

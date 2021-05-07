@@ -63,45 +63,50 @@
         <div class="row" align="center">
             <div class="col py-3">
                 <form method="post">
-                    <% if (new Date() >= activity.organise_date) { %>
-                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已過期</button>
+                    <% if (!logined) { %>
+                        <button class="btn btn-info" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">請登入</button>
+                    <% } else if (new Date() >= activity.organise_date) { %>
+                        <button class="btn btn-warning" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已過期</button>
                     <% } else if (activity.max_guest - activity.guest<=0) { %>
-                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已滿人</button>
+                        <button class="btn btn-light" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已滿人</button>
+                    <% } else if (activity.joined) { %>
+                        <button class="btn btn-success" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已參加</button>
                     <% } else { %>
                         <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit">報名參加</button>
                     <% } %>
                 </form>
             </div>
         </div>
-
-        <% if (friends.length>0) { %>
-            <div class="container bg-light">
-                <div class="div py-2 row">
-                    <div class="col">
-                        <h4>你已經參加此活動的好友：</h4>
+        <% if (logined) { %>
+            <% if (friend_list.length>0) { %>
+                <div class="container bg-light">
+                    <div class="div py-2 row">
+                        <div class="col">
+                            <h4>你已經參加此活動的好友：</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="row py-2">
-                    <div class="col">
-                        <% friends.forEach(friend => { %>
-                            <div class="card" style="width: 12rem;">
-                                <img class="card-img-top pd-1"
-                                    src="<%= friend.img %> "
-                                    style="padding: 10px;">
-                                <div class="card-body" align="center">
-                                    <p class="card-text"><%= friend.name %> </p>
+                    <div class="row py-2">
+                        <div class="col">
+                            <% friend_list.forEach(friend => { %>
+                                <div class="card" style="width: 12rem;">
+                                    <img class="card-img-top pd-1"
+                                        src="<%= friend.img %>"
+                                        style="padding: 10px;">
+                                    <div class="card-body" align="center">
+                                        <p class="card-text"><%= friend.name %> </p>
+                                    </div>
                                 </div>
-                            </div>
-                        <% }); %>
+                            <% }); %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% } else { %>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col" align="center" style="font-size: 2rem; background-color: aliceblue; padding: 10px;">
-                    成為你朋友中第一個參加此活動的人
+            <% } else { %>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col" align="center" style="font-size: 2rem; background-color: aliceblue; padding: 10px;">
+                        成為你朋友中第一個參加此活動的人
+                    </div>
                 </div>
-            </div>
+            <% } %>
         <% } %>
     </div>
 
