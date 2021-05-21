@@ -1,0 +1,62 @@
+<%- include('header', {title:"ASD_Com", logined:logined}) -%>
+
+    <div class="container">
+        <div class="row" style="margin-top: 20%;">
+            <div class="col-8">
+                <table style="font-size: 2vh;">
+                    <tr>
+                        <td>
+                            用户名稱：
+                        </td>
+                        <td>
+                            <%= user.user_name %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            性別：
+                        </td>
+                        <td>
+                            <%= user.gender %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            興趣：
+                        </td>
+                        <td>
+                            <% for(let i = 0; i<user.hobbies.length; i++) { %>
+                                <% if (user.hobbies.length != i+1) { %>
+                                    <%= user.hobbies[i] %>, 
+                                <% } else { %>
+                                    <%= user.hobbies[i] %>
+                                <% } %>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            居住地區：
+                        </td>
+                        <td>
+                            <%= user.living_distict %> 
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <img src="<%= user.img_url %>" alt="">
+            </div>
+        </div>
+        <div class="row" align="center">
+            <div class="col py-3">
+                <form method="post">
+                    <% if (!user.known) { %>
+                        <button class="btn btn-info" style="padding: 10px; width: 120px;" type="submit"> 加入朋友 </button>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') -%>

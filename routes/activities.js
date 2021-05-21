@@ -16,8 +16,9 @@ router.get('/', function (req, res) {
 });
 
 // handle the detail activity page
-router.get('/event/:eventID', function (req, res, next) {
+router.get('/event/:eventID', function (req, res) {
     let activity_id = req.params.eventID;
+    console.log("activity: "+activity_id);
     // get the information 
     db.query(`select * from activities where activity_id = ${activity_id}`, (err, result) => {
         if (err) throw err
@@ -34,7 +35,7 @@ router.get('/event/:eventID', function (req, res, next) {
             "place_distinct": result[0].place_distinct,
             "activity_id": result[0].activity_id,
             "joined": false,
-            "friend_list": {}
+            "friend_list": []
         }
         req.session.a = values
         // draw the map
@@ -73,14 +74,23 @@ router.get('/event/:eventID', function (req, res, next) {
                                             "name": result.name,
                                         })
                                     })
-                                    res.render(`detailed_activity`, { logined: req.cookies['env'].logined, activity: req.cookies['a'], friends: req.cookies['a'].friend_list, src: src })
+                                    console.log("1");
+                                    res.render(`detailed_activity`, { logined: req.session.env.logined, activity: req.session.a, friends: req.session.a.friend_list, src: src })
                                 })
                             }
                         })
+                        console.log('2');
+                        res.render(`detailed_activity`, { logined: req.session.env.logined, activity: req.session.a, friends: req.session.a.friend_list, src: src })
                     })
+                    console.log('3');
+                    res.render(`detailed_activity`, { logined: req.session.env.logined, activity: req.session.a, friends: req.session.a.friend_list, src: src })
                 })
+                console.log('4');
+                res.render(`detailed_activity`, { logined: req.session.env.logined, activity: req.session.a, friends: req.session.a.friend_list, src: src })
             })
         }
+        console.log('5');
+        res.render(`detailed_activity`, { logined: req.session.env.logined, activity: req.session.a, friends: req.session.a.friend_list, src: src })
     })
 })
     .post('/', (res, req) => {
