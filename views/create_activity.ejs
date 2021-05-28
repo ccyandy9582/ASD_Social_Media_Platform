@@ -1,0 +1,91 @@
+<%- include('header', {title:"ASD_Com", logined: true}) -%>
+
+<div class="container" style="margin-top: 70px">
+    <% if (typeof message != 'undefined') { %>
+        <% message.forEach((err)=>{ %>
+            <div class="alert alert-warning alert dismissible fade show" role="alert">
+                <%= err.msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <% }) %> 
+    <% } %>
+    <form action="/activities/create" method="POST">
+        <div class="form-group">
+            <label for="title">標題</label>
+            <input class="form-control" type="text" name="title" placeholder="輸入標題"/>
+        </div>
+        <div class="form-group">
+            <label for="title">活動詳情</label>
+            <textarea class="form-control rounded-0" name="desc" cols="90" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3">
+                    舉行地區
+                </div>
+                <div class="col">
+                    <select name="place_distinct" class="browser-default custom-select">
+                        <option selected disabled>請選擇</option>
+                        <optgroup label="港島">
+                            <option value="CW">中西區</option>
+                            <option value="E">東區</option>
+                            <option value="S">南區</option>
+                            <option value="WC">灣仔區</option>
+                        </optgroup>
+                        <optgroup label="九龍">
+                            <option value="KC">九龍城區</option>
+                            <option value="KT">觀塘區</option>
+                            <option value="SSP">深水埗區</option>
+                            <option value="WTS">黃大仙區</option>
+                            <option value="YTM">油尖旺區</option>
+                        </optgroup>
+                        <optgroup label="新界">
+                            <option value="ID">離島區</option>
+                            <option value="KTD">葵青區</option>
+                            <option value="ND">北區</option>
+                            <option value="SKD">西貢區</option>
+                            <option value="STD">沙田區</option>
+                            <option value="TPD">大埔區</option>
+                            <option value="TWD">荃灣區</option>
+                            <option value="TMD">屯門區</option>
+                            <option value="YLD">元朗區</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address">舉行地址</label>
+            <input class="form-control" type="text" name="place" placeholder="輸入地址"/>
+        </div>
+        <div class="form-group">
+            <label for="max_guest">接待人數</label>
+            <input class="form-control" type="number" name="max_guest" placeholder="接待人數"/>
+        </div>
+        <div class="form-group">
+            <label for="title">舉行日期</label>
+            <input class="form-control" type="date" name="organise_date" placeholder="舉行日期"/>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3">
+                    舉行時間
+                </div>
+                <div class="col">
+                    由：<input class="form-control" type="time" name="start_time" placeholder="舉行日期"/> 至到： <input class="form-control" type="time" name="end_time" placeholder="舉行日期"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title">活動圖片</label>
+            <input class="form-control" type="url" name="img" placeholder="活動封面, 只接受網址, 如https://xxxxxxx"/>
+        </div>
+        <div class="m-1" align="center">
+            <button class="btn btn-outline-primary" type="submit">提交</button>
+        </div>
+    </form>
+</div>
+
+<%- include('footer') -%>

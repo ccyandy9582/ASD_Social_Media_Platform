@@ -6,7 +6,6 @@
             <div class="col-lg-10 col-xl-9 mx-auto">
                 <div class="card card-signin flex-row my-5">
                     <div class="card-img-left d-none d-md-flex" id="signup_image">
-                        <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">
@@ -14,7 +13,16 @@
                             <div class="font-weight-light text-primary" align="right" style="font-size: small">步驟 1/2
                             </div>
                         </h5>
-
+                        <% if (typeof message != 'undefined') { %>
+                            <% message.forEach((err)=>{ %>
+                                <div class="alert alert-warning alert dismissible fade show" role="alert">
+                                    <%= err.msg %>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <% }) %> 
+                        <% } %>
                         <form class="form-signin" method="post">
                             <div class="form-label-group">
                                 <input type="text" id="inputUserame" name="username" class="form-control"
@@ -50,13 +58,6 @@
                             <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" disabled><i
                                     class="fab fa-facebook-f mr-2"></i> 即將啟用... FACEBOOK 註冊</button>
                         </form>
-                        <% if (message) { %>
-                            <% message.forEach((str)=>{ %>
-                                <p class="text-danger">
-                                    <%= str %>
-                                </p>
-                            <% }) %>
-                        <% } %>
                     </div>
                 </div>
             </div>

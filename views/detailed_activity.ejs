@@ -62,7 +62,8 @@
         </div>
         <div class="row" align="center">
             <div class="col py-3">
-                <form method="post">
+            <% var action = `/activities/event/join/${activity.activity_id}`%> 
+                <form method="GET">
                     <% if (!logined) { %>
                         <button class="btn btn-info" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">請登入</button>
                     <% } else if (new Date() >= activity.organise_date) { %>
@@ -72,13 +73,14 @@
                     <% } else if (activity.joined) { %>
                         <button class="btn btn-success" style="padding: 10px; width: 120px;" type="submit" disabled="disabled">已參加</button>
                     <% } else { %>
-                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit">報名參加</button>
+                        <span name="activity_id" style="visibility: hidden;"><%= activity.activity_id %></span>
+                        <button class="btn btn-primary" style="padding: 10px; width: 120px;" type="submit" formaction="<%=action%>">報名參加</button>
                     <% } %>
                 </form>
             </div>
         </div>
         <% if (logined) { %>
-            <% if (friend_list.length>0) { %>
+            <% if (activity.friend_list.length>0) { %>
                 <div class="container bg-light">
                     <div class="div py-2 row">
                         <div class="col">
@@ -86,18 +88,18 @@
                         </div>
                     </div>
                     <div class="row py-2">
-                        <div class="col">
-                            <% friend_list.forEach(friend => { %>
+                        <% activity.friend_list.forEach(friend => { %>
+                            <div class="col-4">
                                 <div class="card" style="width: 12rem;">
                                     <img class="card-img-top pd-1"
-                                        src="<%= friend.img %>"
+                                        src="<%= friend.img_url %>"
                                         style="padding: 10px;">
                                     <div class="card-body" align="center">
-                                        <p class="card-text"><%= friend.name %> </p>
+                                        <p class="card-text"><%= friend.user_name %> </p>
                                     </div>
                                 </div>
-                            <% }); %>
-                        </div>
+                            </div>
+                        <% }); %>
                     </div>
                 </div>
             <% } else { %>

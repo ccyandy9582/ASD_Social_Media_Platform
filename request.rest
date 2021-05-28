@@ -1,0 +1,82 @@
+
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "username": "tester_01",
+    "email": "asdjkhasdsjk@gmail.com",
+    "password": "23495592"
+}
+
+###
+
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "username": "tester_01",
+    "email": "asdjkhsjk@gmail.com",
+    "password": "23495592"
+}
+
+###
+
+GET http://localhost:3000/api/user/ccyandy9582@gmail.com
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/api/hobbies
+
+###
+
+POST http://localhost:3000/api/activity/mutual
+Content-Type: application/json
+
+{
+    "user_id": 10001,
+    "activity_id": 1
+}
+
+###
+POST http://localhost:3000/api/activity/create
+Content-Type: application/json
+
+{
+    "activity_name": "testing",
+    "description": "asdfdasfqwrgadsfg",
+    "max_guest": 11,
+    "place": "jkfdshnjkafhsdhfiasd",
+    "place_distinct": "WC",
+    "organise_date": "2021-06-01",
+    "start_time": "16:26",
+    "end_time": "16:30",
+    "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thebusinesswomanmedia.com%2Fwp-content%2Fuploads%2F2017%2F11%2Fevent-management.jpg&f=1&nofb=1",
+    "user_id": 10006
+}
+
+###
+
+POST http://localhost:3000/api/user/update
+Content-Type: application/json
+
+{
+    "user_id": 10008,
+    "username": "andy chan",
+    "living_area": "WTS",
+    "age": 30,
+    "ASD_lvl": "social_worker",
+    "gender": "M",
+    "img": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fpersonal-icon%2Fpersonal-icon-6.jpg&f=1&nofb=1",
+    "email": "ccyandy9582@gmail.com",
+    "details": 0,
+    "hobbies": [ "打鼓", "行山", "唱歌", "畫畫", "彈琴" ],
+    "activities": [],
+    "friends": [],
+    "recommendedList": { "user": [], "activities": {} },
+    "identify": "lvl_1_asd",
+    "living_distict": "WTS"
+}
+
+###
+POST http://localhost:3000/api/user/friend

@@ -3,70 +3,56 @@ const router = express.Router()
 const parms = require('../parms')
 const db = require('../database')
 const distinct_bfs = require('../helper/distinct')
-// const recommender = require('../helper/friend_recommender')
-const { resolveInclude } = require('ejs')
+const recommender_fd = require('../helper/friend_recommender')
+const Environment = require('../model/Environment')
+const User = require('../model/User')
+const Activities = require('../model/Activities')
+const Hobbies = require('../model/Hobbies')
+const request = require('request')
 
-/* GET home page. And initial the parms.js */
+/* GET home page. And initial the params */
 router.get('/', function (req, res, next) {
-    if (!req.session.env) {
-        req.session.env = { "logined": false, "login_fail": false, "failed_count": 0, }
-    }
-    if (!req.session.user) {
-        req.session.user = {
-            "user_id": null,
-            "username": null,
-            "living_area": null,
-            "age": null,
-            "ASD_lvl": null,
-            "gender": null,
-            "img": null,
-            "email": null,
-            "details": null,
-            "hobbies": [],
-            "activities": [],
-            "friends": [],
-            "recommendedList": [],
-        }
-    }
-    if (!req.session.activities) req.session.activities = []
-    if (!req.session.hobbies) req.session.hobbies = []
-    if (!req.session.users_list) req.session.users_list = []
+    var env = new Environment(req.session.env).env
+    var user = new User(req.session.user).user
+    var activities = new Activities(req.session.activities).activities
+    var hobbies = new Hobbies(req.session.hobbies).hobbies
 
-    // To get the hobbies list
-    db.query(`select * from hobbies`, (err, result) => {
-        if (err) throw err
-        let hobbies = req.session.hobbies
-        result.forEach(hobby => {
-            hobbies.push({
-                "title": hobby.hobby,
-                "img": hobby.img
+    request.get('http://localhost:3000/api/hobbies', (err, result) => {
+    if (err) throw err
+        if (result.statusCode == 200) {
+            JSON.parse(result.body).forEach(hobby => {
+                hobbies.push({"hobby": hobby.hobby, "img": hobby.img})
             })
-        })
-        req.session.hobbies = hobbies
-        // To get the activities list, it will be sorted by distance if the user logined
-        db.query(`select * from activities order by organise_date desc`, (err, result) => {
-            if (err) throw err;
-            let activities = []
-            result.forEach(activity => {
-                activities.push({ "activity_id": activity.activity_id, "title": activity.activity_name, "desc": activity.description, "guest": activity.guest, "max_guest": activity.max_guest, "place": activity.place, "organise": activity.organise, "start_time": activity.start_time, "end_time": activity.end_time, "place_distinct": activity.place_distinct, "img": activity.img })
-            })
-            req.session.activities = activities
-            if (req.session.env.logined) {
-                // let activities = req.cookies['activities']
-                let activities = req.session.activities
-                activities = sorting(activities, distinct_bfs(parms.user.living_area))
-                // To get the recommended friend list that according to the mutual hobbies
-                // let user = req.cookies['user']
-                let user = req.session.user
-                recommender(user.user_id, (err, recommendedList) => {
-                    if (err) throw err
-                    req.session.user = recommendedList
-                    console.log(req.session.touch());
-                    res.render('index', { activities: req.session.activities, logined: req.session.env.logined, friends: req.session.user.recommendedList, articles: parms.articles })
+        }
+
+        request.get("http://localhost:3000/api/activities", (err, result) => {
+            if (err) throw err
+            if (result.statusCode == 200) {
+                JSON.parse(result.body).forEach(activity => {
+                    activities.push({ "activity_id": activity.activity_id, "title": activity.activity_name, "desc": activity.description, "guest": activity.guest, "max_guest": activity.max_guest, "place": activity.place, "organise": activity.organise, "start_time": activity.start_time, "end_time": activity.end_time, "place_distinct": activity.place_distinct, "img": activity.img })
                 })
+                if (env.logined) {
+                    // activities = sorting(activities, distinct_bfs(parms.user.living_area))
+                    // To get the recommended friend list that according to the mutual hobbies
+                    // let user = req.session.user
+                    // recommender_fd(user.user_id, (err, recommendedList) => {
+                    //     if (err) throw err
+                    //     req.session.user = recommendedList
+                    //     console.log(req.session.touch());
+                    //     res.render('index', { activities: req.session.activities, logined: req.session.env.logined, friends: req.session.user.recommendedList, articles: parms.articles })
+                    // })
+                }
             }
-            console.log(req.session.touch());
-            res.render('index', { activities: req.session.activities, logined: req.session.env.logined, friends: req.session.user.recommendedList, articles: parms.articles })
+            req.session.activities = activities
+            req.session.user = user
+            req.session.hobbies = hobbies
+            req.session.env = env
+
+            console.log("session activities");
+            console.log(req.session.activities);
+            
+            var articles = parms.articles
+            res.render('index', {env, user, activities, hobbies, articles})
         })
     })
 })

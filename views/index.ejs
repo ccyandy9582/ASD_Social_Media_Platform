@@ -1,12 +1,12 @@
-<%- include('header', {title:"ASD_Com", logined: logined}) -%>
+<%- include('header', {title:"ASD_Com", logined: env.logined, identify: user.identify}) -%>
 <div class="row" style="background-color: rgb(221, 160, 221); margin-top: 70px;">
     <div class="col p-2" align="center">
         如果您有時間，可以按<a href="https://forms.gle/qemrHWKNtyaBvSo58" target="_blank">此</a>告訴我這個網站的使用感受
     </div>
 </div>
-<%- include('scrollable_carousel', {my_list: activities}) -%>
-<% if (logined) { %>
-    <% friends.forEach(friend => { %>
+<%- include('scrollable_carousel', {activities}) -%>
+<% if (env.logined) { %>
+    <% user.recommendedList.user.forEach(friend => { %>
         <div class="card" style="width: 12rem;">
             <img class="card-img-top pd-1"
                 src="<%= friend.img %> "
@@ -43,4 +43,13 @@
     </div>
 </div>
 
+<script>
+    function play() {
+      document.getElementById("audio").play();
+    }
+  </script>
+
+  <button onclick="play()">play</button>
+  <audio id="audio" src="../sound.mp3"></audio>
+  
 <%- include('footer') -%>

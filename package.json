@@ -9,6 +9,7 @@
     "3": "^2.1.0",
     "auth": "0.0.9",
     "balanced-match": "^1.0.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "dateformat": "^4.5.1",
@@ -17,6 +18,8 @@
     "express": "~4.16.1",
     "express-mysql-session": "^2.1.5",
     "express-rate-limit": "^5.2.3",
+    "express-session": "~1.17.1",
+    "express-validator": "^6.11.1",
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
     "jsdom": "^16.4.0",
@@ -27,7 +30,7 @@
     "sass": "^1.32.4",
     "sort-by": "^1.2.0",
     "sort-map": "^1.0.0",
-    "express-session": "^1.17.1"
+    "validator": "^0.4.28"
   },
   "devDependencies": {
     "express-session": "^1.17.1",

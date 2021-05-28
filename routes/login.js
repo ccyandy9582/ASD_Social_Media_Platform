@@ -1,75 +1,106 @@
 const express = require('express')
 const router = express.Router()
-const { restrict, checkPassword } = require('auth')
 const db = require('../database')
 const parms = require('../parms')
 const crypto = require("crypto")
-const { ajax, ajaxSetup } = require('jquery')
+const request = require('request')
+const Environment = require('../model/Environment')
+const User = require('../model/User')
 
 /* GET login listing. */
 router.get('/', (req, res) => {
-    console.log(req.session.touch());
-    res.render('login', { failed: req.seesion.env.login_fail })
+    var env = new Environment(req.session.env).env
+    console.log(env);
+    var failed = env.login_fail
+    var logined = env.logined
+    if (!logined)
+        res.render('login', { logined, failed })
 })
     .post('/', async (req, res) => {
-        let userMail = req.body.email
-        let password = req.body.pw
+        var userMail = req.body.email
+        var password = req.body.pw
+        var user = new User(req.session.user).user
+        var env = new Environment(req.session.env).env
 
         if (!userMail && password) {
             return ""
         } else {
-            db.query(`select * from users where email = "${userMail}"`, (err, result) => {
+            var loginOptions = {
+                uri: "http://localhost:3000/api/login",
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: {
+                    "email": userMail,
+                    "password": password
+                },
+                json: true
+            }
+            request(loginOptions, (err, response) => {
+                console.log(response.statusCode);
                 if (err) throw err
-                if (result.length != 0 && result[0].email == userMail && result[0].pw == password) {
-                    let env = req.session.env
-                    let user = req.session.user
+                if (response.statusCode == 200) {
 
                     env.login_fail = false
                     env.logined = true
                     env.failed_count = 0
-                    user.username = result[0].user_name
-                    user.living_area = result[0].living_distict
-                    user.age = result[0].age
-                    user.ASD_lvl = result[0].identify
-                    user.gender = result[0].gender
-                    user.img = result[0].img_url
-                    user.email = result[0].email
-                    user.details = result[0].details
 
-                    db.query(`select hobby from user_hobbies where user_hobbies.user_id = ${result[0].user_id} order by hobby asc`, (error, hobbies) => {
-                        if (error) throw error
-                        hobbies.forEach(hobby => {
-                            user.hobbies.push(hobby)
-                        })
-                        db.query(`SELECT users.user_id FROM users, user_friends WHERE user_friends.user_id = ${user.user_id} and users.user_id = user_friends.friend_id`, (err, results) => {
+                    user.user_id = response.body[0].user_id
+                    user.username = response.body[0].user_name
+                    user.living_area = response.body[0].living_distict
+                    user.age = response.body[0].age
+                    user.ASD_lvl = response.body[0].identify
+                    user.gender = response.body[0].gender
+                    user.img = response.body[0].img_url
+                    user.email = response.body[0].email
+                    user.details = response.body[0].details
+                    user.identify = response.body[0].identify
+
+                    request.get(`http://localhost:3000/api/hobbies/${user.user_id}`, (err, resp) => {
+                        if (err) throw err
+                        if (resp.statusCode == 200 && resp.length > 0) {
+                            resp.forEach(hobby => {
+                                user.hobbies.push(hobby)
+                            })
+                        }
+                        request.get(`http://localhost:3000/api/friend/${user.user_id}`, (err, respon) => {
                             if (err) throw err
-                            results.forEach(friend => {
-                                user.friends.push({
-                                    "user_id": friend.user_id,
+                            if (respon.statusCode == 200 && respon.length > 0) {
+                                respon.forEach(friend => (
+                                    {"user_id": friend.user_id,
                                     "name": friend.username,
                                     "gender": friend.gender,
                                     "img": friend.img_url,
-                                    "living_distinct": friend.living_distict
-                                })
-                            })
+                                    "living_distinct": friend.living_distict}
+                                ))
+                            }
                             req.session.env = env
-                            res.session.user = user
+                            req.session.user = user
+                            
+                            console.log("session env");
+                            console.log(req.session.env);
+                            console.log("session user");
+                            console.log(req.session.user);
 
                             res.redirect('/')
                         })
-                        
                     })
                 } else {
-                    ++req.session.env.failed_count
+                    var failed = true
+                    var failed_count = ++req.session.env.failed_count
                     req.session.env.login_fail = true
-                    res.render('login', { failed: true, failed_count: req.session.env.failed_count })
+                    res.render('login', { failed, failed_count })
                 }
             })
         }
     })
 
 router.get('/forget', (req, res) => {
-    res.render('forget', { logined: req.session.env.logined, emailNotFound: false })
+    const env = new Environment(req.session.env)
+    var emailNotFound = false
+    var logined = env.logined
+    res.render('forget', { logined, emailNotFound })
 })
     .post('/forget', async (res, req) => {
         let userMail = req.body.email

@@ -11,14 +11,12 @@
         <td>
             性別
         </td>
-    </tr>
-    <tr>
         <td>
-            <input type="radio" id="male" name="gender" value="male">
+            <input type="radio" id="male" name="gender" value="M" selected>
             <label for="male">男性</label><br>
-            <input type="radio" id="female" name="gender" value="female">
+            <input type="radio" id="female" name="gender" value="F">
             <label for="female">女性</label><br>
-            <input type="radio" id="other" name="gender" value="other">
+            <input type="radio" id="other" name="gender" value="O">
             <label for="other">其他</label>
         </td>
     </tr>
@@ -47,12 +45,11 @@
     </tr>
     <tr>
         <td>
-            電話號碼:
+            年紀:
         </td>
         <td>
             <div class="form-group" style="margin: 0">
-                <input type="tel" class="form-control" id="phoneNumber" placeholder="電話號碼" name="phoneNumber">
-                <small class="form-text text-muted">我們絕不以你的號碼作商業用途。</small>
+                <input type="text" class="form-control" id="age" placeholder="年紀" name="age">
             </div>
         </td>
     </tr>
@@ -113,11 +110,15 @@
             興趣:
         </td>
         <td>
-            <% interest_list.forEach(function(interest) {%>
-                <input type="checkbox" id="<%=interest%>" name="<%=interest%>" value="<%=interest%>">
-                <label for="<%=interest%>">
-                    <%=interest%>
-                </label><br>
+            <% interest_list.forEach((interest) => {%>
+                <% console.log(interest) %> 
+                
+                <input type="checkbox" name="hobbies" value="<%=interest.hobby%>">
+                <label for="hobby">
+                    <%=interest.hobby%>
+                </label>
+                <img height="100px" width="100px" src="<%=interest.img%>">
+                <br><br>
                 <%})%>
         </td>
     </tr>
