@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "3": "^2.1.0",
+    "animate.css": "^4.1.1",
     "auth": "0.0.9",
     "balanced-match": "^1.0.0",
     "bcrypt": "^5.0.1",
